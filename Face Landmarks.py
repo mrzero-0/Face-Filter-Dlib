@@ -17,6 +17,10 @@ for face in faces:
     x2, y2 = face.right(), face.bottom()
     imgOriginal = cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
     landmarks = predictor(imgGray, face)
+    for n in range(68):
+        x = landmarks.part(n).x
+        y = landmarks.part(n).y
+        cv2.circle(imgOriginal, (x, y), 4, (50, 50, 255), cv2.FILLED)
 
 cv2.imshow("Original", imgOriginal)
 cv2.waitKey(0)
