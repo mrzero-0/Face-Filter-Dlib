@@ -39,7 +39,7 @@ while True:
         Success, img = cap.read()
     else:
         img = cv2.imread("myface.jpg")
-    img = cv2.resize(img, (0, 0), None, 0.8, 0.8)
+    img = cv2.resize(img, (0, 0), None, 1, 1)
     imgOriginal = img.copy()
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = detector(imgGray)
@@ -75,4 +75,7 @@ while True:
         cv2.imshow("BGR", imgColorLips)
         cv2.imshow("Lips", imgLips)
     cv2.imshow("Original", imgOriginal)
-    cv2.waitKey(1)
+    if cv2.waitKey(1) & 0xFF == ord(' '):
+        break
+cap.release()
+cv2.destroyAllWindows()
