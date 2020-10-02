@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import dlib
-Webcam = True
+Webcam = False
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 cap = cv2.VideoCapture(0)
@@ -71,10 +71,10 @@ while True:
         imgColorLips = cv2.GaussianBlur(imgColorLips, (7, 7), 10)
         imgOriginalGray = cv2.cvtColor(imgOriginal, cv2.COLOR_BGR2GRAY)
         imgOriginalGray = cv2.cvtColor(imgOriginalGray, cv2.COLOR_GRAY2BGR)
-        imgColorLips = cv2.addWeighted(imgOriginalGray, 1, imgColorLips, 0.4, 0)
+        imgColorLips = cv2.addWeighted(imgOriginal, 1, imgColorLips, 0.4, 0)
         cv2.imshow("BGR", imgColorLips)
-        cv2.imshow("Lips", imgLips)
-    cv2.imshow("Original", imgOriginal)
+        # cv2.imshow("Lips", imgLips)
+    # cv2.imshow("Original", imgOriginal)
     if cv2.waitKey(1) & 0xFF == ord(' '):
         break
 cap.release()
